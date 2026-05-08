@@ -270,8 +270,9 @@ def stats_at_optimum(t_data, t_grid, f_obs, P, w0, W0, x0, y0, z0, eps_base=1e-6
     sigma2 = rss / df
     cov = sigma2 * JTJ_inv
     se = np.sqrt(np.diag(cov).clip(min=0.0))
-
-    tcrit = tdist.ppf(0.975, df=df)
+    
+    alpha = 0.05
+    tcrit = tdist.ppf(1-alpha/2, df=df)
     moe = tcrit * se
     ci_lo, ci_hi = base - moe, base + moe
 
@@ -387,7 +388,7 @@ class ODEPINN:
 
         # trainable positive parameters
         #init_val = 1e-1
-        clip = lambda v: tf.clip_by_value(v, 1e-6, 10.0)
+        clip = lambda v: tf.clip_by_value(v, 1e-6, 1.0)
         self.p1 = tf.Variable(1e-2, dtype=tf.float32, constraint=clip, name="p1")
         self.p3 = tf.Variable(1e-3, dtype=tf.float32, constraint=clip, name="p3")
         self.p4 = tf.Variable(1e-1, dtype=tf.float32, constraint=clip, name="p4")
@@ -890,6 +891,19 @@ def run_all_sheets(
         x_data = preprocess_series(df["x"].to_numpy(dtype=float), sigma, normalize)
         y_data = preprocess_series(df["y"].to_numpy(dtype=float), sigma, normalize)
         z_data = preprocess_series(df["z"].to_numpy(dtype=float), sigma, normalize)
+        
+        preprocess_series_csv_path = os.path.join(output_dir, f"{sheet_str}_preprocess_series.csv")
+
+        df_preprocess_series = pd.DataFrame({
+            "t":  np.asarray(t_data).ravel(),
+            "w":  np.asarray(w_data).ravel(),
+            "x":  np.asarray(x_data).ravel(),
+            "y":  np.asarray(y_data).ravel(),
+            "z":  np.asarray(z_data).ravel(),
+        })
+        df_preprocess_series.to_csv(preprocess_series_csv_path, index=False)
+        
+        print(f"Saved: {preprocess_series_csv_path}")
 
         tmin = float(np.min(t_data))
         tmax = float(np.max(t_data))
