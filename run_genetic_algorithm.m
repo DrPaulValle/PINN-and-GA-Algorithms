@@ -1,4 +1,4 @@
-function result = run_genetic_algorithm(objective, bounds, pop_size, generations, elite_frac, crossover_rate, mutation_rate, mutation_scale, tournament_size, stall_generations, seed, verbose)
+function result = run_genetic_algorithm(objective, bounds, pop_size, generations, elite_frac, crossover_rate, mutation_rate, mutation_scale, tournament_size, stall_generations, seed, blx_alpha, verbose)
     stream = RandStream('mt19937ar', 'Seed', seed);
     n_vars = size(bounds, 1);
     lo = bounds(:,1).';
@@ -48,7 +48,7 @@ function result = run_genetic_algorithm(objective, bounds, pop_size, generations
             parent2 = tournament_select(pop, fitness, stream, tournament_size);
 
             if rand(stream) < crossover_rate
-                [child1, child2] = blend_crossover(parent1, parent2, stream, 0.35);
+                [child1, child2] = blend_crossover(parent1, parent2, stream, blx_alpha);
             else
                 child1 = parent1;
                 child2 = parent2;
