@@ -283,7 +283,7 @@ def stats_at_optimum(t_data, t_grid, f_obs, P, w0, W0, x0, y0, z0, eps_base=1e-6
     aic = n * np.log(max(rss, 1e-16) / n) + 2 * k
     if (k > 0) and ((n / k) < 40) and ((n - k - 1) > 0):
         aic += (2 * k * (k + 1)) / (n - k - 1)
-
+    
     return dict(
         R2=R2, R2_adj=R2_adj, RSS=rss, AIC=aic,
         se=se, moe=moe, ci_lo=ci_lo, ci_hi=ci_hi, pvals=pvals,
