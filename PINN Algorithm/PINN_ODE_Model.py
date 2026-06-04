@@ -1,9 +1,11 @@
 """
-Dr. Paul Antonio Valle Trujillo; paul.valle@tectijuana.edu.mx
+Mechanistic Nonlinear Dynamical Modeling for Parameter Estimation: A Comparison of Physics Informed Neural Networks and Genetic Algorithms
 
-Departamento de Ingeniería Eléctrica y Electrónica, Ingeniería Biomédica
-Tecnológico Nacional de México [TecNM - Tijuana]
-Blvd. Alberto Limón Padilla s/n, C.P. 22454, Tijuana, B.C., México
+Paul A. Valle¹, Yolocuauhtli Salazar², Jesus B. Páez-Lerma³, N. Oscar Soto-Cruz³, Luis N. Coria¹, Iván A. García¹, Michell V. González-Campos³
+
+¹ Posgrado en Ciencias de la Ingeniería, BioMath Research Group, Tecnológico Nacional de México/IT Tijuana, Tijuana, México. paul.valle@tectijuana.edu.mx, luis.coria@tectijuana.edu.mx, D25210003@tectijuana.edu.mx
+²Departamento de Ingeniería Eléctrica y Electrónica, Tecnológico Nacional de México/IT Durango, Durango, México. ysalazar@itdurango.edu.mx
+³Departamento de Ingenierías Química y Bioquímica, Tecnológico Nacional de México/IT Durango, Durango, México. jpaez@itdurango.edu.mx, nsoto@itdurango.edu.mx
 """
 
 import os
