@@ -1,11 +1,29 @@
 """
-Mechanistic Nonlinear Dynamical Modeling for Parameter Estimation: A Comparison of Physics Informed Neural Networks and Genetic Algorithms
+Mechanistic Nonlinear Dynamical Modeling for Parameter Estimation: A Comparison 
+of Physics Informed Neural Networks and Genetic Algorithms
 
-Paul A. Valle¹, Yolocuauhtli Salazar², Jesus B. Páez-Lerma³, N. Oscar Soto-Cruz³, Luis N. Coria¹, Iván A. García¹, Michell V. González-Campos³
+Paul A. Valle¹, Yolocuauhtli Salazar², Jesus B. Páez-Lerma³, N. Oscar Soto-Cruz³,
+Luis N. Coria¹, Iván A. García¹, Michell V. González-Campos³
 
-¹ Posgrado en Ciencias de la Ingeniería, BioMath Research Group, Tecnológico Nacional de México/IT Tijuana, Tijuana, México. paul.valle@tectijuana.edu.mx, luis.coria@tectijuana.edu.mx, D25210003@tectijuana.edu.mx
+¹Posgrado en Ciencias de la Ingeniería, BioMath Research Group, Tecnológico Nacional de México/IT Tijuana, Tijuana, México. paul.valle@tectijuana.edu.mx, luis.coria@tectijuana.edu.mx, D25210003@tectijuana.edu.mx
 ²Departamento de Ingeniería Eléctrica y Electrónica, Tecnológico Nacional de México/IT Durango, Durango, México. ysalazar@itdurango.edu.mx
 ³Departamento de Ingenierías Química y Bioquímica, Tecnológico Nacional de México/IT Durango, Durango, México. jpaez@itdurango.edu.mx, nsoto@itdurango.edu.mx
+
+Augmented mathematical model
+To describe the dynamical interactions among the variables involved in an alcoholic 
+fermentation process carried out by the ITD00185 yeast of S. cerevisiae, we consider 
+biomass w(t), glucose x(t) and fructose y(t) as substrates, and ethanol z(t) as the 
+main metabolic product in a batch system. The evolution of these state variables is 
+represented by the following nonlinear first-order ordinary differential equations:
+    
+        dw/dt = p1*w*(x+y)*exp(-p2*W) - p3*w*(p0+z)
+        dW/dt = w
+        dx/dt = -p4*x*w - p5*x
+        dy/dt = -p6*y*w - p7*y
+        dz/dt = p8*(p0+x+y)*w - p9*z
+        
+where W(t) represents the cumulative biomass concentration over time, and all state 
+variables are expressed in g/L, while time t is measured in hours.
 """
 
 import os
